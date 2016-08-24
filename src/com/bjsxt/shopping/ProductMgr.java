@@ -6,6 +6,22 @@ import java.util.List;
 
 public class ProductMgr {
 	
+	private static ProductMgr pm = null;
+	
+	static{
+		if(pm == null){
+			pm = new ProductMgr();
+			// you should read config file to set the specific dao object
+			pm.setDao(new ProductMySQLDAO());
+		}
+	}
+	
+	private ProductMgr(){}
+	
+	public static ProductMgr getInstance(){
+		return pm;
+	}
+	
 	ProductDAO dao = null;
 	
 	public ProductDAO getDao() {
@@ -21,7 +37,8 @@ public class ProductMgr {
 	}
 	
 	public List<Product> getProducts(int pageNo, int pageSize){
-		return null;
+		return dao.getProducts(pageNo, pageSize);
+		
 	}
 	
 	public List<Product> findProducts(int[] categoryId, 
@@ -54,6 +71,8 @@ public class ProductMgr {
 		return false;
 	}
 	
-	
+	public boolean addProduct(Product p){
+		return dao.addProduct(p);
+	}
 	
 }
