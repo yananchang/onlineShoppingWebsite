@@ -10,9 +10,9 @@ public interface ProductDAO {
 	
 	public List<Product> getProducts(int pageNo, int pageSize);
 	
-	public List<Product> findProducts(int[] categoryId, 
-									  String name, 
-									  String descr, 
+	public int findProducts(List<Product > list,
+									  int[] categoryId, 
+									  String keyWord, 
 									  double lowNormalPrice, 
 									  double highNormalPrice,
 									  double lowMemberPrice,
@@ -29,4 +29,6 @@ public interface ProductDAO {
 	public boolean updateProduct(Product p);
 	
 	public boolean addProduct(Product p);
+
+	public int getProducts(List<Product> products, int pageNo, int pageSize);
 }

@@ -24,7 +24,6 @@ List<Category> categories = Category.getCategories();
 			<td>descr</td>
 			<td>isleaf</td>
 			<td>grade</td>
-			<td>New Subcategory</td>
 		</tr>
 		<% 
 		for (Iterator<Category> it = categories.iterator(); it.hasNext();){
@@ -42,6 +41,12 @@ List<Category> categories = Category.getCategories();
 				<td><%=c.getGrade() %></td>
 				<td>
 					<a href="categoryadd.jsp?pid=<%=c.getId() %>">添加子类别</a>
+					&nbsp; 
+					<% 
+						if(c.isLeaf()){
+					%>
+					<a href="productadd.jsp?categoryid=<%=c.getId() %>">在该类别下添加商品</a>
+					<%} %>
 				</td>
 			</tr>
 		<% 

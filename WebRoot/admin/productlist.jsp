@@ -6,7 +6,6 @@
 
 <%! 
 private static final int PAGE_SIZE = 3;
-
 %>
 
 <% 
@@ -18,11 +17,12 @@ if(strPageNo != null){
 if(pageNo <= 1) pageNo = 1;
 %>
 
-
 <% 
 //get all the users
-List<Product> products = ProductMgr.getInstance().getProducts(pageNo, PAGE_SIZE);
-//List<User> list = UserManager.getUsers();
+List<Product> products = new ArrayList<Product>();
+int pageCount = ProductMgr.getInstance().getProducts(products, pageNo, PAGE_SIZE);
+
+if(pageNo > pageCount) pageNo = pageCount;
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -53,7 +53,7 @@ List<Product> products = ProductMgr.getInstance().getProducts(pageNo, PAGE_SIZE)
 				<td><%=p.getNormalPrice() %></td>
 				<td><%=p.getMemberPrice() %></td>
 				<td><%=p.getPdate() %></td>
-				<td><%=p.getCategoryId() %></td>
+				<td><%=p.getCategory().getName() %></td>
 
 				<td>
 					<a href="productdelete.jsp?id=<%=p.getId()%>" target="detail">删除</a>
@@ -68,9 +68,13 @@ List<Product> products = ProductMgr.getInstance().getProducts(pageNo, PAGE_SIZE)
 	<center>
 		第<%=pageNo %>页
 		&nbsp;
+		共<%=pageCount %>页
+		&nbsp;
 		<a href="productlist.jsp?pageno=<%=pageNo-1 %>">上一页</a>
 		&nbsp;
 		<a href="productlist.jsp?pageno=<%=pageNo+1 %>">下一页</a>
+		&nbsp;
+		<a href="productlist.jsp?pageno=<%=pageCount %>">最后一页</a>
 		
 	</center>
 </body>

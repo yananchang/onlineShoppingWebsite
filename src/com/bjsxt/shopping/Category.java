@@ -91,6 +91,8 @@ public class Category {
 		return CategoryDAO.loadById(id);
 	}
 	
-	
+	public static boolean isLeaf(int id){
+		return false;
+	}
 	
 }

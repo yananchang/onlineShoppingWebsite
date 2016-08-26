@@ -7,7 +7,16 @@ import java.util.List;
 public class ProductMgr {
 	
 	private static ProductMgr pm = null;
+	private int pageCount = 0;
 	
+	public int getPageCount() {
+		return pageCount;
+	}
+
+	public void setPageCount(int pageCount) {
+		this.pageCount = pageCount;
+	}
+
 	static{
 		if(pm == null){
 			pm = new ProductMgr();
@@ -38,12 +47,22 @@ public class ProductMgr {
 	
 	public List<Product> getProducts(int pageNo, int pageSize){
 		return dao.getProducts(pageNo, pageSize);
-		
 	}
 	
-	public List<Product> findProducts(int[] categoryId, 
-									  String name, 
-									  String descr, 
+	/**
+	 * 
+	 * @param products
+	 * @param pageNo
+	 * @param pageSize
+	 * @return page counts of the specified pageSize
+	 */
+	public int getProducts(List<Product> products, int pageNo, int pageSize){
+		return dao.getProducts(products, pageNo, pageSize);
+	}
+	
+	
+	public int findProducts(List<Product> list, int[] categoryId, 
+									  String keyWord,
 									  double lowNormalPrice, 
 									  double highNormalPrice,
 									  double lowMemberPrice,
@@ -52,7 +71,7 @@ public class ProductMgr {
 									  Date endDate,
 									  int pageNo,
 									  int pageSize){
-		return null;
+		return dao.findProducts(list, categoryId, keyWord, lowNormalPrice, highNormalPrice, lowMemberPrice, highMemberPrice, startDate, endDate, pageNo, pageSize);
 	}
 	
 	public List<Product> findProducts(String name){

@@ -10,6 +10,9 @@ public class Product {
 	double memberPrice;
 	Timestamp pdate;
 	int categoryId;
+	
+	Category category;
+	
 	public int getId() {
 		return id;
 	}
@@ -51,6 +54,20 @@ public class Product {
 	}
 	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
+	}
+	public Category getCategory() {
+		return category;
+	}
+	
+	public Category getCategory(boolean lazy){
+		if(lazy){
+			return category;
+		}else{
+			return Category.loadById(categoryId);
+		}
+	}
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 	

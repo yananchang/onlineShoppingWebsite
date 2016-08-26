@@ -20,12 +20,14 @@ public class ProductOracleDAO implements ProductDAO{
 	}
 
 	@Override
-	public List<Product> findProducts(int[] categoryId, String name,
-			String descr, double lowNormalPrice, double highNormalPrice,
+	public int findProducts(List<Product> list,
+			int[] categoryId, 
+			String keyWord, 
+			double lowNormalPrice, double highNormalPrice,
 			double lowMemberPrice, double highMemberPrice, Date startDate,
 			Date endDate, int pageNo, int pageSize) {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 
 	@Override
@@ -50,6 +52,12 @@ public class ProductOracleDAO implements ProductDAO{
 	public boolean addProduct(Product p) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public int getProducts(List<Product> products, int pageNo, int pageSize) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
