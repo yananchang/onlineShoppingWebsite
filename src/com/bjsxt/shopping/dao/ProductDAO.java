@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.bjsxt.shopping.Product;
+import com.bjsxt.shopping.SalesOrder;
 
 public interface ProductDAO {
 	public  List<Product> getProducts();
@@ -31,4 +32,10 @@ public interface ProductDAO {
 	public boolean addProduct(Product p);
 
 	public int getProducts(List<Product> products, int pageNo, int pageSize);
+
+	public Product loadById(int id);
+
+	public List<Product> getLatestProducts(int count);
+
+	int getOrders(List<SalesOrder> list, int pageNo, int pageSize);
 }

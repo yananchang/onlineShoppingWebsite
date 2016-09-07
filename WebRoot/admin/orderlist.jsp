@@ -19,8 +19,8 @@ if(pageNo <= 1) pageNo = 1;
 
 <% 
 //get all the users
-List<Product> products = new ArrayList<Product>();
-int pageCount = ProductMgr.getInstance().getProducts(products, pageNo, PAGE_SIZE);
+List<SalesOrder> orders = new ArrayList<SalesOrder>();
+int pageCount = OrderMgr.getInstance().getOrders(orders, pageNo, PAGE_SIZE);
 
 if(pageNo > pageCount) pageNo = pageCount;
 %>
@@ -34,33 +34,28 @@ if(pageNo > pageCount) pageNo = pageCount;
 	<table border="1" align="center">
 		<tr>
 			<td>ID</td>
-			<td>name</td>
-			<td>descr</td>
-			<td>normalprice</td>
-			<td>memberprice</td>
-			<td>pdate</td>
-			<td>categoryid</td>
+			<td>username</td>
+			<td>addr</td>
+			<td>odate</td>
+			<td>status</td>
+
 		</tr>
 		<% 
-		for (Iterator<Product> it = products.iterator(); it.hasNext();){
-			Product p = it.next();
+		for (Iterator<SalesOrder> it = orders.iterator(); it.hasNext();){
+			SalesOrder so = it.next();
 		
 		%>
 			<tr>
-				<td><%=p.getId() %></td>
-				<td><%=p.getName() %></td>
-				<td><%=p.getDescr() %></td>
-				<td><%=p.getNormalPrice() %></td>
-				<td><%=p.getMemberPrice() %></td>
-				<td><%=p.getPdate() %></td>
-				<td><%=p.getCategory().getName() %></td>
-
+				<td><%=so.getId() %></td>
+				<td><%=so.getUser().getUsername() %></td>
+				<td><%=so.getAddr() %></td>
+				<td><%=so.getoDate() %></td>
+				<td><%=so.getStatus() %></td>
 				<td>
-					<a href="productdelete.jsp?id=<%=p.getId()%>" target="detail">É¾³ý</a>
-					&nbsp;&nbsp;
-					<a href="productmodify.jsp?id=<%=p.getId()%>" target="detail">ÐÞ¸Ä</a>
-					&nbsp;&nbsp;
-					<a href="productimageup.jsp?id=<%=p.getId()%>" target="detail">Í¼Æ¬ÉÏ´«</a>
+					<a href="orderdetailshow.jsp?id=<%=so.getId()%>" target="detail">¶©µ¥Ã÷Ï¸</a>
+					&nbsp;
+					<a href="ordermodify.jsp?id=<%=so.getId()%>" target="detail">¶©µ¥ÐÞ¸Ä</a>
+					
 				</td>
 			</tr>
 		<% 

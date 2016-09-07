@@ -1,10 +1,5 @@
-<%@ page language="java" import="java.util.*,com.bjsxt.shopping.*, java.sql.*"
+<%@ page language="java" import="java.util.*,cn.sina.ttjava_13.user.*"
 	pageEncoding="gbk"%>
-
-<% 
-List <Product> latestProducts = ProductMgr.getInstance().getLatestProducts(10);
-%>
-
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
 <!-- saved from url=(0021)http://www.shihui.cn/ -->
@@ -30,7 +25,7 @@ List <Product> latestProducts = ProductMgr.getInstance().getLatestProducts(10);
 		<META name=GENERATOR content="MSHTML 8.00.7600.16766">
 	</HEAD>
 	<BODY>
-
+		<SCRIPT type=text/javascript>var process_request = "正在处理您的请求...";var SH_URL = "http://www.shihui.cn/";</SCRIPT>
 		<A name=top></A>
 		<DIV id=white>
 			<DIV id=header>
@@ -135,7 +130,14 @@ List <Product> latestProducts = ProductMgr.getInstance().getLatestProducts(10);
 				</UL>
 			</DIV>
 		</DIV>
-
+		<SCRIPT language=javascript type=text/javascript>
+			ShiHui.PageInfo.ShowMemberInfo();
+			ShiHui.MiniCart.Show();
+			setInterval("ShiHui.topHotScroll('#topHotScroll')", 5000);
+			$(function(){
+				ShiHui.MiniCart.Load();
+			});
+		</SCRIPT>
 		<DIV id=bodys>
 			<DIV class=MainLeft>
 				<DIV class=category_title>
@@ -330,29 +332,19 @@ var is_index = 1;
 				<DIV id=ifocus2>
 					<img src="images/http_i.jpg" height="300" width="600">
 				</DIV>
-
+				<SCRIPT language=javascript type=text/javascript>
+var data = [{"url": "data/afficheimg/20110412ojwgok.JPG", "href": "/special/160.html", "title": ""},{"url": "data/afficheimg/20110308ufxuhq.jpg", "href": "/special/83.html", "title": ""},{"url": "data/afficheimg/20110416qhrfqf.jpg", "href": "/special/172.html", "title": ""},{"url": "data/afficheimg/20110113tmgyea.jpg", "href": "/special/21.html", "title": ""},{"url": "data/afficheimg/20110228nzmcuc.jpg", "href": "/special/53.html", "title": ""},{"url": "data/afficheimg/20110428wfrqqw.jpg", "href": "/special/143.html", "title": ""},{"url": "data/afficheimg/20110428lbjmmn.jpg", "href": "/special/176.html", "title": ""},{"url": "data/afficheimg/20110226svdlpf.jpg", "href": "/special/155.html", "title": ""}];
+$("#ifocus2").shihuiSlide({width:575, height:300, photo: data, timeout: 8000});
+</SCRIPT>
 
 				<DIV class=huobaoDIV>
 					<DIV class=huobao_box>
-                    
-                    <% 
-                    //latest products start here
-                    for(int i=0; i<latestProducts.size();i++){
-                    	Product p = latestProducts.get(i);
-                    %>
-                    <!-- START Here-->
-					  <DIV 
-					  <% 
-					  if(i%3 ==0){
-					  	out.println("style=\"BORDER-RIGHT-STYLE: none\"");
-					  }
-					  %>
-					  
-					  class=goods>
+						<DIV class=goods>
 							<DIV class=img>
 								<P>
-									<A title=家有儿女纽飞轮雷达笔 href="productdetailshow.jsp?id=<%=p.getId() %>">
-										<IMG border=0 alt=<%= p.getName()%> src="images/product/<%=p.getId() %>.jpg">
+									<A title=家有儿女纽飞轮雷达笔 href="http://www.shihui.cn/goods-2432.html"
+										target=_blank><IMG border=0 alt=家有儿女纽飞轮雷达笔
+											src="images/1301271287820935171.jpg">
 									</A>
 								</P>
 								<P class=c>
@@ -361,30 +353,53 @@ var is_index = 1;
 							</DIV>
 							<DIV class=text>
 								<P>
-									<A title=家有儿女纽飞轮雷达笔 href="productdetailshow.jsp?id=<%=p.getId() %>"
-										target=_blank><%= p.getName()%>
-									</A>
+									<A title=家有儿女纽飞轮雷达笔 href="http://www.shihui.cn/goods-2432.html"
+										target=_blank>家有儿女纽飞轮雷达笔</A>
 								</P>
 								<P>
 									<FONT color=#fe0000>自主预防、强制纠错</FONT>
 								</P>
 								<P style="COLOR: #ff0000; FONT-WEIGHT: bold">
-									￥<%= p.getMemberPrice()%>元
+									￥288元
 								</P>
 								<P>
-									<A title=查看商品详情 href="productdetailshow.jsp?id=<%=p.getId() %>"
-										><IMG border=0 src="images/hot_gO1.gif">
+									<A title=查看商品详情 href="http://www.shihui.cn/goods-2432.html"
+										target=_blank><IMG border=0 src="images/hot_gO1.gif">
 									</A>
 								</P>
 							</DIV>
 						</DIV>
-                         <!-- END Here-->
-                         
-                         <% 
-                         }
-                         //latest products end here
-                         %>
-                        
+						<DIV class=goods>
+							<DIV class=img>
+								<P>
+									<A title=GPS个人定位器G100
+										href="http://www.shihui.cn/goods-2447.html" target=_blank><IMG
+											border=0 alt=GPS个人定位器G100
+											src="images/1301593819187223948.jpg">
+									</A>
+								</P>
+								<P class=c>
+									人气指数：10588
+								</P>
+							</DIV>
+							<DIV class=text>
+								<P>
+									<A title=GPS个人定位器G100
+										href="http://www.shihui.cn/goods-2447.html" target=_blank>GPS个人定位器G100</A>
+								</P>
+								<P>
+									<FONT color=#fe0000>野外旅行探险最佳协助伴侣</FONT>
+								</P>
+								<P style="COLOR: #ff0000; FONT-WEIGHT: bold">
+									￥368元
+								</P>
+								<P>
+									<A title=查看商品详情 href="http://www.shihui.cn/goods-2447.html"
+										target=_blank><IMG border=0 src="images/hot_gO1.gif">
+									</A>
+								</P>
+							</DIV>
+						</DIV>
 						<DIV style="BORDER-RIGHT-STYLE: none" class=goods>
 							<DIV class=img>
 								<P>
@@ -397,7 +412,7 @@ var is_index = 1;
 								<P class=c>
 									人气指数：11529
 								</P>
-						  </DIV>
+							</DIV>
 							<DIV class=text>
 								<P>
 									<A title="超薄触摸屏MID平板电脑10寸 带GPS功能"
@@ -415,7 +430,99 @@ var is_index = 1;
 									</A>
 								</P>
 							</DIV>
-					  </DIV>
+						</DIV>
+						<DIV class=goods>
+							<DIV class=img>
+								<P>
+									<A title=高清3D水晶版电视棒 href="http://www.shihui.cn/goods-2464.html"
+										target=_blank><IMG border=0 alt=高清3D水晶版电视棒
+											src="images/1302658591260844194.jpg">
+									</A>
+								</P>
+								<P class=c>
+									人气指数：12019
+								</P>
+							</DIV>
+							<DIV class=text>
+								<P>
+									<A title=高清3D水晶版电视棒 href="http://www.shihui.cn/goods-2464.html"
+										target=_blank>高清3D水晶版TV棒</A>
+								</P>
+								<P>
+									<FONT color=#fe0000>免费看电视 3D高清电影</FONT>
+								</P>
+								<P style="COLOR: #ff0000; FONT-WEIGHT: bold">
+									￥188元
+								</P>
+								<P>
+									<A title=查看商品详情 href="http://www.shihui.cn/goods-2464.html"
+										target=_blank><IMG border=0 src="images/hot_gO1.gif">
+									</A>
+								</P>
+							</DIV>
+						</DIV>
+						<DIV class=goods>
+							<DIV class=img>
+								<P>
+									<A title="多功能U盘录像手表TH-B14 隐蔽摄像 高清图片　内置4G卡"
+										href="http://www.shihui.cn/goods-2105.html" target=_blank><IMG
+											border=0 alt="多功能U盘录像手表TH-B14 隐蔽摄像 高清图片　内置4G卡"
+											src="images/1294697302530173656.jpg">
+									</A>
+								</P>
+								<P class=c>
+									人气指数：11955
+								</P>
+							</DIV>
+							<DIV class=text>
+								<P>
+									<A title="多功能U盘录像手表TH-B14 隐蔽摄像 高清图片　内置4G卡"
+										href="http://www.shihui.cn/goods-2105.html" target=_blank>多功能U盘录像手表</A>
+								</P>
+								<P>
+									<FONT color=#fe0000>五一抢购优惠50元</FONT>
+								</P>
+								<P style="COLOR: #ff0000; FONT-WEIGHT: bold">
+									￥248元
+								</P>
+								<P>
+									<A title=查看商品详情 href="http://www.shihui.cn/goods-2105.html"
+										target=_blank><IMG border=0 src="images/hot_gO1.gif">
+									</A>
+								</P>
+							</DIV>
+						</DIV>
+						<DIV style="BORDER-RIGHT-STYLE: none" class=goods>
+							<DIV class=img>
+								<P>
+									<A title="最新款GPS导航行车记录仪 导航+摄像"
+										href="http://www.shihui.cn/goods-2469.html" target=_blank><IMG
+											border=0 alt="最新款GPS导航行车记录仪 导航+摄像"
+											src="images/1302718848512082109.jpg">
+									</A>
+								</P>
+								<P class=c>
+									人气指数：10424
+								</P>
+							</DIV>
+							<DIV class=text>
+								<P>
+									<A title="最新款GPS导航行车记录仪 导航+摄像"
+										href="http://www.shihui.cn/goods-2469.html" target=_blank>新款GPS导航行车记录仪</A>
+								</P>
+								<P>
+									<FONT color=#fe0000>汽车黑匣子</FONT>
+								</P>
+								<P style="COLOR: #ff0000; FONT-WEIGHT: bold">
+									￥1380元
+								</P>
+								<P>
+									<A title=查看商品详情 href="http://www.shihui.cn/goods-2469.html"
+										target=_blank><IMG border=0 src="images/hot_gO1.gif">
+									</A>
+								</P>
+							</DIV>
+						</DIV>
 					</DIV>
 					<DIV style="DISPLAY: none" class=huobao_box>
 						<DIV class=goods>

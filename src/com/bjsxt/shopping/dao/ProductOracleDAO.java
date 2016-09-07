@@ -60,4 +60,10 @@ public class ProductOracleDAO implements ProductDAO{
 		return 0;
 	}
 
+	@Override
+	public Product loadById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
