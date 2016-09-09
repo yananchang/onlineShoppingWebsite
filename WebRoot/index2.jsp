@@ -1,8 +1,46 @@
 <%@ page language="java" import="java.util.*,com.bjsxt.shopping.*, java.sql.*"
-	pageEncoding="gbk"%>
+	pageEncoding="GB18030"%>
+
+<%! 
+private String getSecondCategoryStr(List<Category> categories, Category topCategory){
+	StringBuffer buf = new StringBuffer();
+	//buf.append("if(document.form2.category1.options[document.form2.category1.selectedIndex].value == " + topCategory.getId() + ")(");
+	//buf.append(b)
+	int childCount = 1;
+	for(int i=0; i<categories.size(); i++){
+		Category c = categories.get(i);
+		if(c.getPid() == topCategory.getId()){
+
+			buf.append("document.form2.category2.options[" + childCount + "].text = '" + c.getName() + "';\n");
+			buf.append("document.form2.category2.options[" + childCount + "].value = '" + c.getId() + "';\n");
+			childCount ++;
+		}
+	}
+	
+	buf.insert(0, "document.form2.category2.options[0].text = '请选择二级目录';\n");
+	buf.insert(0, "document.form2.category2.options[0].value = '-1';\n");
+	buf.insert(0, "document.form2.category2.selectedIndex = 0;\n");
+	buf.insert(0, "document.form2.category2.options.length = " + childCount + ";\n");
+	buf.insert(0, "if(document.form2.category1.options[document.form2.category1.selectedIndex].value == " + topCategory.getId() + "){\n");
+	buf.append("}\n");
+	
+	return buf.toString();
+}
+%>
 
 <% 
 List <Product> latestProducts = ProductMgr.getInstance().getLatestProducts(10);
+List<Category> categories = Category.getCategories();
+List<Category> topCategories = new ArrayList<Category>();
+String str = "";
+
+for(int i=0; i<categories.size();i++){
+	Category c = categories.get(i);
+	if(c.getGrade() == 1){
+		topCategories.add(c);
+		str += getSecondCategoryStr(categories, c);
+	}
+}
 %>
 
 
@@ -120,7 +158,12 @@ List <Product> latestProducts = ProductMgr.getInstance().getLatestProducts(10);
 						<IMG border=0 src="images/cate_on_bg.gif">
 						<IMG border=0 src="images/childs_bg.gif">
 					</DIV>
+                
+                    
 				</FORM>
+                
+                
+                
 				<UL id=topHotScroll class=scroll>
 					<LI>
 						<A href="http://www.shihui.cn/special/83.html" target=_blank>塑可儿联手湖南卫视打造2011年瘦脸风潮</A>
@@ -145,6 +188,106 @@ List <Product> latestProducts = ProductMgr.getInstance().getLatestProducts(10);
 						href="http://www.shihui.cn/allcate.html" target=_blank>全<BR>部</A>
 					</SPAN>
 				</DIV>
+<script type="text/javascript">
+	<!--
+	var req;
+	function changeCategory(){
+	
+		var id = document.form2.category1.options[document.form2.category1.selectedIndex];
+   		var url = "getchildcategory_2.jsp?id=" + escape(id.value);
+   		if(window.XMLHttpRequest){
+   			req = new XMLHttpRequest();
+   		} else if (window.ActiveXObject){
+   			req = new ActiveXObject("Microsoft.XMLHTTP");
+   		}
+   		req.open("GET", url, true);
+   		req.onreadystatechange = callback;
+   		req.send(null);
+	}
+	
+	function callback(){
+    		if(req.readyState == 4){
+    			if(req.status == 200){
+    				//parse(req.responseText);
+    				eval(req.responseText);
+    				//parseXML(req.responseXML);
+    			}
+    		}
+    	}
+    	
+    function parseXML(xml){
+    	var categories = xml.getElementsByTagName("categories")[0];
+    	//alert(categories.childNodes.length);
+    	
+    	document.form2.category2.length = categories.childNodes.length + 1;
+    	document.form2.category2.selectedIndex = 0;
+    	document.form2.category2.options[0].text = '请选择二级列表';
+    	document.form2.category2.options[0].value = -1;
+	    	
+    	for(var i=0;  i<categories.childNodes.length; i++){
+    		var category = categories.childNodes[i];
+    		var id = category.childNodes[0].childNodes[0].nodeValue;
+    		var name = category.childNodes[1].childNodes[0].nodeValue;
+    		
+    		document.form2.category2.options[i+1].text = name;
+    		document.form2.category2.options[i+1].value = id;
+    	}
+    }
+    
+    function parse(msg){
+		if(msg == null || msg.trim() == ""){
+	    	document.form2.category2.length = 1;
+	    	document.form2.category2.selectedIndex = 0;
+	    	document.form2.category2.options[0].text = '请选择二级列表';
+	    	document.form2.category2.options[0].value = -1;
+	    	return;
+		}
+		//alert(msg);
+    	var categories = msg.split("-");
+    	document.form2.category2.length = categories.length + 1;
+    	document.form2.category2.selectedIndex = 0;
+    	document.form2.category2.options[0].text = '请选择二级列表';
+    	document.form2.category2.options[0].value = -1;
+    	
+    	for(var i=0; i<categories.length; i++){
+    		var categoryprops = categories[i].split(",");
+    		var id = categoryprops[0];
+    		var name = categoryprops[1];
+    		document.form2.category2.options[i+1].text = name;
+    		document.form2.category2.options[i+1].value = id;
+    	}
+    }
+	-->
+</script>  
+	<TABLE height=26 cellSpacing=0 cellPadding=0 width=380 align=center border=0>
+		<form name=form2 action=rexsearchp.asp method=post>
+		<TBODY>
+		<TR>
+			<TD width=211 height=26>
+                <div id ="indexsearch">
+                <select class=wenbenkuang name=category1 onchange="changeCategory()">
+                	<option value=0 selected>查询所有一级目录</option>
+                    <% 
+                    for(int i=0; i<topCategories.size(); i++){
+                    	Category c = topCategories.get(i);
+                    	%>
+                    	<option value=<%=c.getId() %>><%=c.getName() %></option>
+                    	<% 
+                    }
+                    %>
+                </select>
+                
+                <select class=wenbenkuang name=category2>
+                	<option value=0 selected>查询二级目录</option>
+                </select>
+                
+                </div>
+                </TD>
+          </TR>
+      </TBODY>
+      </form>   
+   </TABLE>   
+      
 				<div style="HEIGHT: 610px" class=category_box>
 					<div id=categorylist>
 						<div

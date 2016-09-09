@@ -1,6 +1,7 @@
 package com.bjsxt.shopping;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.bjsxt.shopping.*;
@@ -151,6 +152,34 @@ public class CategoryDAO {
 
 	public static void delete(Category category, int id, int pid) {
 		
+	}
+	
+	public static List<Category> getChilds(Category parent){
+		Connection conn = null;
+		List<Category> childs = new ArrayList<Category>();
+		ResultSet rs = null;
+		try {
+			conn = DB.getConn();
+			String sql = "select * from category where pid = " + parent.getId();
+System.out.println(sql);
+			rs = DB.executeQuery(conn, "select * from category where pid = " + parent.getId());
+			while(rs.next()){
+				Category c = new Category();
+				c.setId(rs.getInt("id"));
+				c.setName(rs.getString("name"));
+				c.setDescr(rs.getString("descr"));
+				c.setPid(rs.getInt("pid"));
+				c.setLeaf(rs.getInt("isleaf") == 0 ? true : false);
+				c.setGrade(rs.getInt("grade"));
+				childs.add(c);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DB.closeRs(rs);
+			DB.closeConn(conn);
+		}
+		return childs;
 	}
 	
 	

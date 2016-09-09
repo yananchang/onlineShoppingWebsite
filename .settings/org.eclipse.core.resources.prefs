@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//SQL/Shopping.sql=UTF-8
 encoding//WebRoot/admin/AdminIndex.jsp=GB18030
+encoding//src/com/bjsxt/shopping/reports/ShowProductSalesServlet.java=UTF-8
 encoding//src/com/bjsxt/shopping/reports/TestJfreeChart.java=UTF-8
 encoding//src/com/bjsxt/shopping/servlet/FileUpload.java=UTF-8

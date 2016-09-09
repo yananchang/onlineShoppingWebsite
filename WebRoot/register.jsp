@@ -34,6 +34,37 @@ if(action != null && action.trim().equals("register")){
   <head> 
     <title>用户注册</title>
     <script language=JavaScript src="script/regcheckdata.js"></script>
+    <script type="text/javascript">
+    	var req;
+    	function validate(){
+    		var idField = document.getElementById("userid");
+    		var url = "validate.jsp?id=" + escape(idField.value);
+    		if(window.XMLHttpRequest){
+    			req = new XMLHttpRequest();
+    		} else if (window.ActiveXObject){
+    			req = new ActiveXObject("Microsoft.XMLHTTP");
+    		}
+    		req.open("GET", url, true);
+    		req.onreadystatechange = callback;
+    		req.send(null);
+    	}
+    	
+    	function callback(){
+    		if(req.readyState == 4){
+    			if(req.status == 200){
+    				var msg = req.responseXML.getElementsByTagName("msg")[0];
+    				setMsg(msg.childNodes[0].nodeValue);
+    			}
+    		}
+    	}
+    	
+    	function setMsg(msg){
+    		if(msg == "invalid")
+	    		document.getElementById("usermsg").innerHTML = "<font color='red'>username invalid!</font>";
+	    	else
+	    		document.getElementById("usermsg").innerHTML = "<font color='green'>u can register!</font>";
+    	}
+    </script>
   </head>
   
   <body>
@@ -47,7 +78,8 @@ if(action != null && action.trim().equals("register")){
 				<tr>
 					<td>用户名：</td>
 					<td>
-						<input type=text name="username" size="30" maxlength="10">
+						<input type=text name="username" id="userid" size="30" maxlength="10" onblur="validate()">
+						<div id=usermsg></div>
 					</td>
 				</tr>
 				<tr>

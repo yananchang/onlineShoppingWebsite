@@ -95,4 +95,8 @@ public class Category {
 		return false;
 	}
 	
+	public List<Category> getChilds(){
+		return CategoryDAO.getChilds(this);
+	}
+	
 }

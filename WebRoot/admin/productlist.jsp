@@ -56,7 +56,7 @@ if(pageNo > pageCount) pageNo = pageCount;
 				<td><%=p.getCategory().getName() %></td>
 
 				<td>
-					<a href="productdelete.jsp?id=<%=p.getId()%>" target="detail">É¾³ý</a>
+					<a href="productdelete.jsp?id=<%=p.getId()%>" target="detail" onclick="return confirm('È·¶¨É¾³ý£¿')">É¾³ý</a>
 					&nbsp;&nbsp;
 					<a href="productmodify.jsp?id=<%=p.getId()%>" target="detail">ÐÞ¸Ä</a>
 					&nbsp;&nbsp;
